@@ -1,0 +1,4 @@
+rm -r Q1.o
+rm -r Select_TCP-UDP.o
+rm -r pthread-mutex.o
+

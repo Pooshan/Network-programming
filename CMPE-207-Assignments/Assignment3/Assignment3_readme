@@ -1,0 +1,50 @@
+Name: Pooshan Vyas
+SJSU ID: 010034362
+
+
+Question: Implement a multi-threaded, simple web server, 207httpd, which can serve static HTML files and jpeg/gif image files. 
+
+Answer: Multi-threading
+
+   The server should be able to handle multiple simultaneous HTTP requests in parallel using threads. In the main thread, the server listens at a fixed port. When it receives a TCP connection request, it sets up a TCP connection socket and services the request in a separate thread. 
+   web server should keep a log of incoming requests. Since separate threads are going to handle separate requests, you should synchronize logging among different threads, so that the log entries do not inter-mingled.
+
+   Simple HTTP client: Created two section to call url. put in loop for regenerating buffer every time.
+
+when each and every time client call or ask for access at that time server create new thread for each and every HTTP client request. 
+
+Server Output
+
+Pooshan's-MacBook-Pro:~ Pooshan$ ./webserver.o
+Request Is here :) :
+Got a GET request:
+index.html
+File opened:
+HTTP/1.1 200 OK
+
+Content-type: text/html
+
+Client OutPut
+
+Pooshan's-MacBook-Pro:~ Pooshan$ ./webserver.o
+Sent Command GET /index.html HTTP/1.1 
+
+: 
+HTTP/1.1 200 OK
+Content-type: text/html
+
+<html>
+<head>
+<title>Welcome to 207httpd</title>
+</head>
+<body>
+<img src="sjsu.jpg">
+<h1>It works. Congratulations!</h1>
+<hr>
+<p>
+Here is a brief description of <a href="httpd.html">207httpd</a>.
+</p>
+</body>
+</html>
+
+

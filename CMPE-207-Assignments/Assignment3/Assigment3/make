@@ -1,0 +1,3 @@
+gcc webclient.c -o webclient.o
+gcc webserver.c -o webserver.o
+

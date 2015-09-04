@@ -1,0 +1,4 @@
+gcc q1.c -o Q1.o
+gcc Select_TCP-UDP -o Select_TCP-UDP.o
+gcc pthread-mutex.c -o pthread-mutex.o
+

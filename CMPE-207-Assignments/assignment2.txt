@@ -1,0 +1,25 @@
+Q1: [20 points] Modify TCPdaytimed.c (Chapter 10.5) to make it a concurrent, connection-oriented server using a multi-process master-slave design. More specifically, the master process of the server should create a new child process (slave) to handle each incoming request. The slave process should convert the time string into the following format:MM/DD/YYYY HH:MM:SS Weekday for example, “02/26/2015 22:01:02 Thu”. The slave process should then send the revised time string back to the client.
+
+Answer 1:
+modified TCPdaytime and make it concurrent
+for connection oriented setup i used TCP Master-Slave.
+Master process is creating new child process for each and every request here to make it more effiect i genrared new child process--slave to hadle each incoming request. 
+By using the book "Unix Network Programming book" i understand concept behind master-slave concurrent opration
+code is written with comments so explaination become much more easier.
+
+Q2: [40 points] Reimplement the TCP and UDP servers of Problem 3 in Homework #1 in a single program. Use select() in the server to support both TCP and UDP clients. The server should be multithreaded as well: It should create a new thread to service each new client connection (TCP) or request (UDP). You can reuse the TCP and UDP clients from Homework #1 for testing.
+
+Answer 2:
+I use my home work assigment #1 tcp/ucp Client-Server code to make concurrent program i created thread for it. to make concurrent programming for master and slave programming i created new thread each and everytime. Here select() command make transition much easier so i can handle tecp and udp both in one single program. Here multithreading cencept which i learn from "Unix Network Programming" book help me so much resolve the problem of handling multiple client with both TCP and UDP. when any new client request for connection i make new thread for it. that's how i can handle multiple thread and to select UDP and TCP i set tsock and usock veriable and assign proper syntext. Select() command mainly block the other signal if one is using. If TCP is using then select provide non-blocking signal to TCP and blocking signal to UDP. here that why i am able to handle multiple client with TCP and UDP
+
+Q3: [40 points] Implement a producer thread and a consumer thread for a work queue using pthread, mutex and conditional variable.
+ Each work item in the queue is a string. The queue items are dynamically allocated. The size of the queue is unbounded.
+ The producer repeatedly: (1) reads a line from the standard input into a string, (2) enqueues the string as a single work item into the queue. The producer also wakes up the consumer if the consumer is waiting for new work items.
+ The consumers dequeues each string from the queue, counts the number of words in the string and then prints out both the string and its size (in words). When dequeuing , the consumer should wait if the queue is empty.
+
+Answer 3: After reading prof's PPT and "Unix Network Programming" i am able get understanding of thread, muthex and conditional variable. 
+Thread: a thread of execution is the smallest sequence of programmed instructions that can be managed independently by a scheduler, which is typically a part of the operating system. This is particularly useful when one of the tasks may block, and it is desired to allow the other tasks to proceed without blocking. it is consider in resoursharing and multitasking. 
+Mutex: Mutex is lifesaver at the time of resourse sharing. When we need to handle one resourse for multiple process we need to make sure that it doesn't nd up in dead lock situation. so to overcome that we use mutex. Mutex lock the resourse when one process is running, after complting that particular process, mutex relese that lock from resource, so that other process can handle that resourse. it handle one by one. 
+In the program i use same concept to work with requier fuctionality. i created queue and put it's lenght dynamic. so we can handle lenght of queue any time if we want. so size is not bounded in queue. so i created a queue fuction then Dequeue fuction, then front fuction to delet any node if we want. i created rear fuction to insert node in queue. moreover, to fulfill fuctionality of question i created producer as well as consumer fuction. i theard so multiple process can occure and to share same resourse i use mutex. because of mutex consumer will wait. our queue is unboud so no need to worry if queue is full. however, i need to think about boundry condition which is what if queue is empty.  so that i put condition if queue is empty then consumer will wait. 
+program is written with comments so we can understand the code easily. 
+
